@@ -1,4 +1,4 @@
 public interface CreateUserUseCase
 {
-    void create(UserModel user);
+    dynamic create(UserModel user);
 }

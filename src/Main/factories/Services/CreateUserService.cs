@@ -1,5 +1,3 @@
-using Microsoft.AspNetCore.Mvc;
-
 public static class CreateUserServiceFactory
 {
     public static CreateUserService make()

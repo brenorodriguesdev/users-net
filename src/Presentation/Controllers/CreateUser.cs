@@ -25,12 +25,17 @@ public class CreateUserController : ControllerBase
                 return BadRequest(error);
             }
 
-            CreateUserUseCase_.create(new UserModel
+            var errorAlreadyExist = CreateUserUseCase_.create(new UserModel
             {
                 name = UserViewModel_.name,
                 email = UserViewModel_.email,
                 password = UserViewModel_.password
             });
+
+            if (errorAlreadyExist != null)
+            {
+                return BadRequest(errorAlreadyExist);
+            }
 
             return null;
 
