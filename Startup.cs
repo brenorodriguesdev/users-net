@@ -20,6 +20,7 @@ namespace api
         {
             services.AddControllers();
             services.AddScoped(x => CreateUserControllerFactory.make());
+            services.AddScoped(x => SignInControllerFactory.make());
 
             services.AddMvc().AddControllersAsServices();
             services.AddSwaggerGen();

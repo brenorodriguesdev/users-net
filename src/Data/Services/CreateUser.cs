@@ -7,23 +7,23 @@ public class CreateUserService : CreateUserUseCase
         this.UserRepository_ = UserRepository_;
         this.Crypter_ = crypter_;
     }
-    public dynamic create(UserModel user)
+    public dynamic Create(UserModel User)
     {
-        UserEntity alreadyExistUser = this.UserRepository_.findByEmail(user.email);
+        UserEntity AlreadyExistUser = this.UserRepository_.findByEmail(User.email);
 
-        if (alreadyExistUser != null)
+        if (AlreadyExistUser != null)
         {
             return "Esse e-mail já está em uso";
         }
 
-        string password = this.Crypter_.crypt(user.password);
+        string Password = this.Crypter_.crypt(User.password);
 
         this.UserRepository_.save(new UserEntity
         {
             id = 0,
-            name = user.name,
-            email = user.email,
-            password = password
+            name = User.name,
+            email = User.email,
+            password = Password
         });
 
         return null;

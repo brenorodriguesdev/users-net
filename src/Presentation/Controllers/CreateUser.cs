@@ -18,26 +18,26 @@ public class CreateUserController : ControllerBase
         try
         {
 
-            var error = Validator_.validate(UserViewModel_);
+            var Error = Validator_.validate(UserViewModel_);
 
-            if (error != null)
+            if (Error != null)
             {
-                return BadRequest(error);
+                return BadRequest(Error);
             }
 
-            var errorAlreadyExist = CreateUserUseCase_.create(new UserModel
+            var AlreadyExistError = CreateUserUseCase_.Create(new UserModel
             {
                 name = UserViewModel_.name,
                 email = UserViewModel_.email,
                 password = UserViewModel_.password
             });
 
-            if (errorAlreadyExist != null)
+            if (AlreadyExistError != null)
             {
-                return BadRequest(errorAlreadyExist);
+                return BadRequest(AlreadyExistError);
             }
 
-            return null;
+            return Ok();
 
         }
         catch (Exception)
