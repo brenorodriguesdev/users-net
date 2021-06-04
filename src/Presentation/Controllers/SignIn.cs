@@ -25,14 +25,14 @@ public class SignInController : ControllerBase
                 return BadRequest(Error);
             }
 
-            var InvalidDataError = SignInUseCase_.Sign(SignInModel_);
+            var AccessToken = SignInUseCase_.Sign(SignInModel_);
 
-            if (InvalidDataError != null)
+            if (AccessToken == "Credenciais inválidas")
             {
-                return Unauthorized(InvalidDataError);
+                return Unauthorized(AccessToken);
             }
 
-            return Ok();
+            return Ok(AccessToken);
 
         }
         catch (Exception)

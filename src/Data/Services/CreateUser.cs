@@ -1,11 +1,11 @@
 public class CreateUserService : CreateUserUseCase
 {
     private readonly UserRepository UserRepository_;
-    private readonly Crypter Crypter_;
-    public CreateUserService(UserRepository UserRepository_, Crypter crypter_)
+    private readonly Hasher Hasher_;
+    public CreateUserService(UserRepository UserRepository_, Hasher Hasher_)
     {
         this.UserRepository_ = UserRepository_;
-        this.Crypter_ = crypter_;
+        this.Hasher_ = Hasher_;
     }
     public dynamic Create(UserModel User)
     {
@@ -16,7 +16,7 @@ public class CreateUserService : CreateUserUseCase
             return "Esse e-mail já está em uso";
         }
 
-        string Password = this.Crypter_.crypt(User.password);
+        string Password = this.Hasher_.Hash(User.password);
 
         this.UserRepository_.save(new UserEntity
         {

@@ -4,6 +4,7 @@ public static class SignInServiceFactory
     {
         UserRepositoryNpg userRepositoryNpg = new UserRepositoryNpg();
         Bcrypt bcrypt = new Bcrypt(8);
-        return new SignInService(userRepositoryNpg, bcrypt);
+        Jwt jwt = new Jwt("0d734a1dc94fe5a914185f45197ea846");
+        return new SignInService(userRepositoryNpg, bcrypt, jwt);
     }
 }
