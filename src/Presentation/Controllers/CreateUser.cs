@@ -18,14 +18,14 @@ public class CreateUserController : ControllerBase
         try
         {
 
-            var Error = Validator_.validate(UserViewModel_);
+            var Error = this.Validator_.validate(UserViewModel_);
 
             if (Error != null)
             {
                 return BadRequest(Error);
             }
 
-            var AlreadyExistError = CreateUserUseCase_.Create(new UserModel
+            var AlreadyExistError = this.CreateUserUseCase_.Create(new UserModel
             {
                 name = UserViewModel_.name,
                 email = UserViewModel_.email,

@@ -18,14 +18,14 @@ public class SignInController : ControllerBase
         try
         {
 
-            var Error = Validator_.validate(SignInModel_);
+            var Error = this.Validator_.validate(SignInModel_);
 
             if (Error != null)
             {
                 return BadRequest(Error);
             }
 
-            var AccessToken = SignInUseCase_.Sign(SignInModel_);
+            var AccessToken = this.SignInUseCase_.Sign(SignInModel_);
 
             if (AccessToken == "Credenciais inválidas")
             {
