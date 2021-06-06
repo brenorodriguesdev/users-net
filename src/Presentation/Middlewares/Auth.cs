@@ -16,7 +16,7 @@ public class AuthMiddleware
     public async Task InvokeAsync(HttpContext context, AuthenticationService authenticationService)
     {
 
-        var allowRoutes = new List<string>() { "/", "/SignIn" };
+        var allowRoutes = new List<string>() { "/", "/SignIn", "/CreateUser" };
 
         var route = context.Request.Path;
 
@@ -36,7 +36,7 @@ public class AuthMiddleware
             var data = authenticationService.Auth(AccessToken);
             if (data is string)
             {
-                context.Response.StatusCode = 401; //UnAuthorized
+                context.Response.StatusCode = 401; 
                 await context.Response.WriteAsync((string)data);
                 return;
             }

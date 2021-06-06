@@ -24,6 +24,7 @@ namespace api
             services.AddScoped(x => CreateUserControllerFactory.make());
             services.AddScoped(x => SignInControllerFactory.make());
             services.AddScoped(x => AuthenticationServiceFactory.make());
+            services.AddScoped(x => UpdatePasswordControllerFactory.make());
 
             services.AddMvc().AddControllersAsServices();
 
